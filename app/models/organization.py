@@ -1,8 +1,7 @@
-from typing import List
 
-from sqlalchemy import Column, BigInteger, String, ForeignKey, Integer
-from sqlalchemy.dialects.postgresql import TIMESTAMP, UUID
-from sqlalchemy.orm import Mapped, relationship
+from sqlalchemy import Column, BigInteger, String
+from sqlalchemy.dialects.postgresql import TIMESTAMP
+from sqlalchemy.orm import relationship
 
 from ..database import Base
 
