@@ -1,0 +1,16 @@
+from sqlalchemy import Column, BigInteger, String, ForeignKey, Integer
+from sqlalchemy.dialects.postgresql import TIMESTAMP, UUID
+from ..database import Base
+
+
+class Channel(Base):
+    __tablename__ = "channel"
+    id = Column(BigInteger, primary_key=True)
+    uuid = Column(UUID, nullable=False, unique=True)
+    application_id = Column(BigInteger, ForeignKey("application.id"), nullable=False)
+    name = Column(String(255), nullable=False)
+    max_members = Column(Integer, nullable=False)
+    created_at = Column(TIMESTAMP(timezone=True), nullable=False)
+    created_by = Column(String(255), nullable=False)
+    updated_at = Column(TIMESTAMP(timezone=True), nullable=False)
+    updated_by = Column(String(255), nullable=False)
