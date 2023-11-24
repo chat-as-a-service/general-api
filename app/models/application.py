@@ -1,5 +1,5 @@
 from sqlalchemy import Column, BigInteger, String, ForeignKey
-from sqlalchemy.dialects.postgresql import TIMESTAMP, TEXT
+from sqlalchemy.dialects.postgresql import TIMESTAMP
 from ..database import Base
 
 
