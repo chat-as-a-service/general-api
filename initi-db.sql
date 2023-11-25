@@ -72,6 +72,7 @@ CREATE INDEX idx_channel_users_channel_id ON channel_users(channel_id);
 
 CREATE TABLE message (
     id bigserial PRIMARY KEY,
+    uuid uuid NOT NULL,
     user_id bigint NOT NULL,
     channel_id bigint NOT NULL,
     message varchar(3000) NOT NULL,
