@@ -23,14 +23,17 @@ CREATE INDEX idx_account_organization_id ON account(organization_id);
 
 CREATE TABLE application (
     id bigserial PRIMARY KEY,
+    uuid uuid NOT NULL DEFAULT gen_random_uuid(),
     name varchar(255) NOT NULL,
     organization_id bigint NOT NULL,
+    master_api_token varchar(255) NOT NULL,
     created_at timestamp with time zone NOT NULL,
     created_by varchar(255) NOT NULL,
     updated_at timestamp with time zone NOT NULL,
     updated_by varchar(255) NOT NULL
 );
 CREATE INDEX idx_application_organization_id ON application(organization_id);
+CREATE INDEX idx_application_organization_master_api_token ON application(master_api_token);
 
 CREATE TABLE "user" (
     id bigserial PRIMARY KEY,
@@ -72,7 +75,7 @@ CREATE INDEX idx_channel_users_channel_id ON channel_users(channel_id);
 
 CREATE TABLE message (
     id bigserial PRIMARY KEY,
-    uuid uuid NOT NULL,
+    uuid uuid NOT NULL DEFAULT gen_random_uuid(),
     user_id bigint NOT NULL,
     channel_id bigint NOT NULL,
     message varchar(3000) NOT NULL,
@@ -83,3 +86,4 @@ CREATE TABLE message (
 );
 CREATE INDEX idx_message_user_id ON message(user_id);
 CREATE INDEX idx_message_channel_id ON message(channel_id);
+CREATE INDEX idx_message_created_at ON message(created_at);
