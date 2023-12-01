@@ -1,4 +1,3 @@
-
 from sqlalchemy import Column, BigInteger, String
 from sqlalchemy.dialects.postgresql import TIMESTAMP
 from sqlalchemy.orm import relationship
