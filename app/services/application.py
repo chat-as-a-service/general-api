@@ -1,10 +1,10 @@
 from sqlalchemy.orm import Session
 
-from app.models.application import Application
+from app.repositories.account import get_by_api_token
 
 
 async def check_api_token(api_token: str, db: Session):
-    application = db.query(Application).filter(Application.master_api_token == api_token).first()
+    application = get_by_api_token(db, api_token)
     if not application:
         return False
     return True

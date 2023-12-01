@@ -10,11 +10,11 @@ log = log.getLogger(__name__)
 api_key_header = api_key.APIKeyHeader(name="Api-Token")
 
 
-async def check_api_token(api_token: str = Security(api_key_header), db: Session = Depends(get_db)):
+async def check_api_token(
+    api_token: str = Security(api_key_header), db: Session = Depends(get_db)
+):
     log.info("Checking Api-Token header")
     api_key_valid = await application_service.check_api_token(api_token, db)
     if not api_key_valid:
-        raise HTTPException(
-            status_code=401, detail="Unauthorized - API Key is wrong"
-        )
+        raise HTTPException(status_code=401, detail="Unauthorized - API Key is wrong")
     return None
