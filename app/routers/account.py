@@ -4,8 +4,10 @@ from sqlalchemy.orm import Session
 from ..core.db import get_db
 from ..schemas.account import AccountCreate
 from ..services import account as account_service
+from app.core.api_key_auth import check_api_token
 
 router = APIRouter()
+secured_router = APIRouter(dependencies=[Depends(check_api_token)])
 
 
 @router.post("/")
