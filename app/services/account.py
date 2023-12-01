@@ -38,8 +38,13 @@ async def account_signin(dto: AccountCreate, db: Session):
         return {"error": "the account does not exist"}
 
     hashed_pw = Hasher.get_password_hash(dto.password)
-    account = db.query(Account).filter(Account.email == dto.email,
-                                       Hasher.verify_password(dto.password, hashed_pw)).first()
+    account = (
+        db.query(Account)
+        .filter(
+            Account.email == dto.email, Hasher.verify_password(dto.password, hashed_pw)
+        )
+        .first()
+    )
     if account is None:
         # raise HTTPException(status_code=401, detail="Invalid credentials")
         return {"error": "wrong password"}
