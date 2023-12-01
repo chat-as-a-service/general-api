@@ -14,6 +14,7 @@ class AccountBase(BaseModel):
 class AccountCreate(AccountBase):
     password: str
 
+
 class AccountCreateResponse(AccountBase):
     pass
 
