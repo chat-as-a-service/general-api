@@ -2,15 +2,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 import logging  # noqa: F401, E402
-from app.core.api_key_auth import check_api_token  # noqa: E402
-from fastapi import FastAPI, Depends  # noqa: E402
 
-<<<<<<< Updated upstream
-=======
 from fastapi import FastAPI  # noqa: E402
->>>>>>> Stashed changes
 
-app = FastAPI(dependencies=[Depends(check_api_token)])
+app = FastAPI()
 
 from .routers import account, organization  # noqa: E402
 
