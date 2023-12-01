@@ -13,3 +13,8 @@ secured_router = APIRouter(dependencies=[Depends(check_api_token)])
 @router.post("/")
 async def create_account(dto: AccountCreate, db: Session = Depends(get_db)):
     return await account_service.create_account(dto, db)
+
+
+@router.post("/signin")
+async def account_signin(dto: AccountCreate, db: Session = Depends(get_db)):
+    return await account_service.account_signin(dto, db)

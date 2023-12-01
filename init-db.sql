@@ -13,7 +13,7 @@ CREATE TABLE account (
     password text NOT NULL,
     first_name varchar(255) NOT NULL,
     last_name varchar(255) NOT NULL,
-    organization_id bigint NOT NULL,
+    organization_id bigint,
     created_at timestamp with time zone NOT NULL,
     created_by varchar(255) NOT NULL,
     updated_at timestamp with time zone NOT NULL,
