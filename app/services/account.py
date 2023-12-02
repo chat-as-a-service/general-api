@@ -21,5 +21,5 @@ async def create_account(dto: AccountCreate, db: Session):
     )
     db.add(new_account)
     db.commit()
-    db.refresh(new_account)
-    return new_account
+
+    return f"{new_account.email} created successfully"
