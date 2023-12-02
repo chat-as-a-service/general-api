@@ -5,7 +5,8 @@ from app.models.account import Account
 from app.repositories.account import get_by_email
 from app.schemas.account import AccountCreate, AccountCreateResponse
 import jwt
-import time
+from datetime import datetime, timedelta
+import os
 
 
 async def create_account(dto: AccountCreate, db: Session):
@@ -46,16 +47,15 @@ async def account_signin(dto: AccountCreate, db: Session):
         .first()
     )
     if account is None:
-        # raise HTTPException(status_code=401, detail="Invalid credentials")
         return {"error": "wrong password"}
 
-    secret_key = "123456"
+    secret_key = os.getenv("SECRET_KEY")
     algo = "HS256"
     payload = {
         "sub": account.email,
-        "exp": time.time() + 7200,
+        "exp": datetime.now() + timedelta(hours=8),
         "iss": "CaaS",
-        "iat": time.time(),
+        "iat": datetime.now(),
     }
 
     # Generate the token
