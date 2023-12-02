@@ -10,6 +10,14 @@ class ApplicationBase(BaseModel):
 
 
 class ApplicationCreate(ApplicationBase):
+    pass
+
+
+class ApplicationCreateResponse(ApplicationBase):
+    pass
+
+
+class Application(ApplicationBase):
     id: int
     created_at: datetime
     created_by: str
