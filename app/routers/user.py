@@ -15,3 +15,4 @@ async def create_user(dto: UserCreate, db: Session = Depends(get_db)):
 # Compare this snippet from app/routers/user.py:
 # from fastapi import APIRouter, Depends
 # from sqlalchemy.orm import Session
+

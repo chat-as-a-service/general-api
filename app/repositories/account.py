@@ -11,5 +11,3 @@ def get_by_api_token(db: Session, api_token: str):
     return db.query(Account).filter(Account.api_token == api_token).first()
 
 
-def get_by_id(db: Session, id: int):
-    return db.query(Account).filter(Account.id == id).first()
