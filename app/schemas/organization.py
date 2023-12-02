@@ -11,6 +11,10 @@ class OrganizationCreate(OrganizationBase):
     pass
 
 
+class OrganizationCreateResponse(OrganizationBase):
+    pass
+
+
 class Organization(OrganizationBase):
     id: int
     created_at: datetime
