@@ -10,13 +10,14 @@ class AccountBase(BaseModel):
     last_name: str
     organization_id: Optional[int] = None
 
+
 class AccountSignin(BaseModel):
     email: EmailStr
     password: str
 
+
 class AccountCreate(AccountBase):
     password: str
-
 
 
 class AccountCreateResponse(AccountBase):
