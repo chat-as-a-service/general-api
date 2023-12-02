@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from app.models.organization import Organization
-from app.repositories.organization import get_by_name
+from app.repositories.organization import get_by_id, get_by_name
 from app.schemas.organization import OrganizationCreate
 
 
@@ -20,8 +20,8 @@ async def organization_create(dto: OrganizationCreate, db: Session):
     return new_organization
 
 
-async def organization_view(dto: OrganizationCreate, db: Session):
-    if not get_by_name(db, dto.name):
-        return {"error": "the name does not exist"}
+async def organization_view(db: Session, ID: int):
+    if not get_by_id(db, ID):
+        return {"error": "the organization may not exist"}
 
-    return get_by_name(db, dto.name)
+    return get_by_id(db, ID)

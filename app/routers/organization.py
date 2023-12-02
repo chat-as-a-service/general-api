@@ -15,6 +15,6 @@ async def organization_creation(dto: OrganizationCreate, db: Session = Depends(g
     return await organization_service.organization_create(dto, db)
 
 
-@router.get("/view")
-async def organization_view(dto: OrganizationCreate, db: Session = Depends(get_db)):
-    return await organization_service.organization_view(dto, db)
+@router.get("/{organizationId}")
+async def organization_view(organizationId: int, db: Session = Depends(get_db)):
+    return await organization_service.organization_view(db, organizationId)
