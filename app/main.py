@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 load_dotenv()
 import logging  # noqa: F401, E402
 
-from fastapi import FastAPI # noqa: E402
+from fastapi import FastAPI  # noqa: E402
 
 app = FastAPI()
 

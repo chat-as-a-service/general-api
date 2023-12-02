@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from app.core.hashing import Hasher
 from app.models.account import Account
 from app.repositories.account import get_by_email
-from app.schemas.account import AccountCreate, AccountCreateResponse
+from app.schemas.account import AccountCreate, AccountCreateResponse, AccountSignin
 import jwt
 from datetime import datetime, timedelta
 import os
@@ -34,19 +34,12 @@ async def create_account(dto: AccountCreate, db: Session):
     return new_account_response
 
 
-async def account_signin(dto: AccountCreate, db: Session):
-    if not get_by_email(db, dto.email):
+async def account_signin(dto: AccountSignin, db: Session):
+    account = get_by_email(db, dto.email)
+    if not account:
         return {"error": "the account does not exist"}
 
-    hashed_pw = Hasher.get_password_hash(dto.password)
-    account = (
-        db.query(Account)
-        .filter(
-            Account.email == dto.email, Hasher.verify_password(dto.password, hashed_pw)
-        )
-        .first()
-    )
-    if account is None:
+    if not Hasher.verify_password(dto.password, account.password):
         return {"error": "wrong password"}
 
     secret_key = os.getenv("SECRET_KEY")
