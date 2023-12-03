@@ -7,6 +7,7 @@ from fastapi import FastAPI  # noqa: E402
 
 app = FastAPI()
 
-from .routers import account  # noqa: E402
+from .routers import account, organization  # noqa: E402
 
 app.include_router(account.router, prefix="/accounts", tags=["accounts"])
+app.include_router(organization.router, prefix="/organizations", tags=["organizations"])
