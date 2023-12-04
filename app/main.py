@@ -15,3 +15,7 @@ app.include_router(organization.router, prefix="/organizations", tags=["organiza
 from app.routers import user
 
 app.include_router(user.router, prefix="/users", tags=["users"])
+
+from app.routers import channel
+
+app.include_router(channel.router, prefix="/channels", tags=["channels"])
