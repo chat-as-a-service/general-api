@@ -1,7 +1,6 @@
 from datetime import datetime
-from typing import Optional
 
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 
 
 class UserBase(BaseModel):
@@ -11,10 +10,12 @@ class UserBase(BaseModel):
     last_name: str
     application_id: int
 
+
 class UserCreate(UserBase):
     pass
 
-class User(UserBase):  
+
+class User(UserBase):
     id: int
     created_at: datetime
     created_by: str

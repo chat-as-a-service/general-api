@@ -34,6 +34,3 @@ class Account(AccountBase):
 
     class Config:
         orm_mode = True
-
-
-
