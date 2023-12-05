@@ -6,7 +6,8 @@ from app.repositories.account import get_by_email
 from app.schemas.account import AccountCreate, AccountCreateResponse, AccountSignin
 import jwt
 from datetime import datetime, timedelta
-import os
+
+from app.settings import settings
 
 
 async def create_account(dto: AccountCreate, db: Session):
@@ -42,7 +43,7 @@ async def account_signin(dto: AccountSignin, db: Session):
     if not Hasher.verify_password(dto.password, account.password):
         return {"error": "wrong password"}
 
-    secret_key = os.getenv("SECRET_KEY")
+    secret_key = settings.secret_key
     algo = "HS256"
     payload = {
         "sub": account.email,
