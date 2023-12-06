@@ -15,6 +15,10 @@ class UserCreate(UserBase):
     pass
 
 
+class UserCreateResponse(UserBase):
+    pass
+
+
 class User(UserBase):
     id: int
     created_at: datetime
