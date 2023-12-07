@@ -18,6 +18,6 @@ async def view_user(userName: str, db: Session = Depends(get_db)):
     return await user_service.view_user(db, userName)
 
 
-# Compare this snippet from app/routers/user.py:
-# from fastapi import APIRouter, Depends
-# from sqlalchemy.orm import Session
+@router.get("/")
+async def list_users(db: Session = Depends(get_db)):
+    return await user_service.list_users(db)
