@@ -1,7 +1,5 @@
 from sqlalchemy.orm import Session
 from app.repositories.application import get_by_api_token
-from app.repositories.account import get_by_api_token
-from sqlalchemy.orm import Session
 from app.models.application import Application
 from app.repositories.application import get_by_name, get_all_applications, get_by_id
 from app.schemas.application import ApplicationCreate, ApplicationCreateResponse
