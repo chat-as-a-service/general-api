@@ -12,7 +12,7 @@ class Channel(Base):
         UUID, nullable=False, unique=True, server_default=text("gen_random_uuid()")
     )
     application_id = Column(BigInteger, ForeignKey(Application.id), nullable=False)
-    name = Column(String(255), nullable=False)
+    channelName = Column(String(255), nullable=False)
     max_members = Column(Integer, nullable=False)
     created_at = Column(TIMESTAMP(timezone=True), nullable=False)
     created_by = Column(String(255), nullable=False)

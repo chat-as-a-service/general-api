@@ -12,6 +12,10 @@ class ChannelCreate(ChannelBase):
     pass
 
 
+class ChannelCreateResponse(ChannelBase):
+    pass
+
+
 class Channel(ChannelBase):
     id: int
     created_at: datetime
