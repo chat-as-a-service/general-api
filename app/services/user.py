@@ -1,3 +1,5 @@
+from datetime import datetime, timezone
+
 from sqlalchemy.orm import Session
 from app.models.user import User
 from app.repositories.user import (
@@ -18,13 +20,16 @@ async def create_user(dto: UserCreate, db):
         application_id=dto.application_id,
         created_by="system",
         updated_by="system",
+        created_at=datetime.now(timezone.utc),
+        updated_at=datetime.now(timezone.utc),
     )
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
     new_user_response = UserCreateResponse(
-        name=dto.name,
-        user_id=dto.user_id,
+        username=new_user.username,
+        nickname=new_user.nickname,
+        application_id=new_user.application_id,
     )
     return new_user_response
 

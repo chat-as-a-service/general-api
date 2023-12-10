@@ -16,8 +16,8 @@ def get_by_application_id_and_username(db: Session, application_id: int, usernam
 
 
 def get_by_name(db: Session, name: str):
-    return db.query(User).filter(User.name == name).first()
+    return db.query(User).filter(User.username == name).first()
 
 
-def get_all_user_list(db: Session, name: str):
+def get_all_user_list(db: Session):
     return db.query(User).all()
