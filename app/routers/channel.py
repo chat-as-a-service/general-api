@@ -13,7 +13,7 @@ async def create_channel(dto: ChannelCreate, db: Session = Depends(get_db)):
     return await channel_service.create_channel(dto, db)
 
 
-@router.get("/{userName}")
+@router.get("/{channelName}")
 async def view_channel(channelName: str, db: Session = Depends(get_db)):
     return await channel_service.view_channel(db, channelName)
 

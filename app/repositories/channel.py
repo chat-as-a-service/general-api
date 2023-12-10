@@ -13,8 +13,7 @@ def get_by_application_id_and_channel(
     return (
         db.query(Channel)
         .filter(
-            Channel.application_id == application_id
-            and Channel.channelName == channelName
+            Channel.application_id == application_id and Channel.name == channelName
         )
         .first()
     )
