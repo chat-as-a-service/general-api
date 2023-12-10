@@ -24,7 +24,7 @@ async def create_user(dto: UserCreate, db):
     db.refresh(new_user)
     new_user_response = UserCreateResponse(
         name=dto.name,
-        organization_id=dto.user_id,
+        user_id=dto.user_id,
     )
     return new_user_response
 
