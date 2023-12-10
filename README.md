@@ -14,6 +14,9 @@ The IDE is free for students by signing up for a [GitHub Student Developer Pack]
     DB_USER=<postgresql username>
     DB_PASSWORD=<postgresql password>
     DB_DB=postgres
+    SECRET_KEY=<secret key for JWT>
+    ATTACHMENT_BUCKET_NAME=<GCP Storage bucket name>
+    GCP_KEY_FILE_PATH=<GCP key file path>
     ```
 6. Run the `init-db.sql` script in the local postgresql DB
 7. Run `uvicorn app.main:app --reload` to start the server

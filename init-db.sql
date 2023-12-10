@@ -50,7 +50,7 @@ CREATE INDEX idx_user_application_id ON "user"(application_id);
 
 CREATE TABLE channel (
     id bigserial PRIMARY KEY,
-    uuid UUID NOT NULL UNIQUE,
+    uuid uuid NOT NULL unique DEFAULT gen_random_uuid(),
     application_id bigint NOT NULL,
     name varchar(255) NOT NULL,
     max_members INT NOT NULL,
