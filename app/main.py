@@ -15,9 +15,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-from .routers import account, organization, application, attachment  # noqa: E402
+from .routers import account, channel, organization, application, attachment  # noqa: E402
 
 app.include_router(account.router, prefix="/accounts", tags=["accounts"])
 app.include_router(attachment.router, prefix="/attachments", tags=["attachments"])
 app.include_router(organization.router, prefix="/organizations", tags=["organizations"])
+app.include_router(channel.router, prefix="/channels", tags=["channels"])
 app.include_router(application.router, prefix="/applications", tags=["applications"])
