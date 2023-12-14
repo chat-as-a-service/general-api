@@ -1,12 +1,19 @@
+from datetime import datetime, timedelta, timezone
+
+import jwt
 from sqlalchemy.orm import Session
 
 from app.core.hashing import Hasher
+from app.exceptions.EntityNotFoundException import EntityNotFoundException
 from app.models.account import Account
 from app.repositories.account import get_by_email
-from app.schemas.account import AccountCreate, AccountCreateResponse, AccountSignin
-import jwt
-from datetime import datetime, timedelta
-
+from app.schemas.account import (
+    AccountCreate,
+    AccountCreateResponse,
+    AccountSigninReq,
+    AccountResponse,
+    AccountSigninRes,
+)
 from app.settings import settings
 
 
@@ -35,7 +42,7 @@ async def create_account(dto: AccountCreate, db: Session):
     return new_account_response
 
 
-async def account_signin(dto: AccountSignin, db: Session):
+async def account_signin(dto: AccountSigninReq, db: Session):
     account = get_by_email(db, dto.email)
     if not account:
         return {"error": "the account does not exist"}
@@ -47,11 +54,23 @@ async def account_signin(dto: AccountSignin, db: Session):
     algo = "HS256"
     payload = {
         "sub": account.email,
-        "exp": datetime.now() + timedelta(hours=8),
+        "exp": datetime.now(timezone.utc) + timedelta(hours=8),
         "iss": "CaaS",
-        "iat": datetime.now(),
+        "iat": datetime.now(timezone.utc),
     }
 
     # Generate the token
     token = jwt.encode(payload, secret_key, algorithm=algo)
-    return {"token": token}
+    return AccountSigninRes(token=token)
+
+
+async def get_user(account_email: str, db: Session):
+    account = get_by_email(db, account_email)
+    if not account:
+        raise EntityNotFoundException(Account)
+    return AccountResponse(
+        email=account.email,
+        first_name=account.first_name,
+        last_name=account.last_name,
+        organization_id=account.organization_id,
+    )

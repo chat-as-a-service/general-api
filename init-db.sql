@@ -87,3 +87,16 @@ CREATE TABLE message (
 CREATE INDEX idx_message_user_id ON message(user_id);
 CREATE INDEX idx_message_channel_id ON message(channel_id);
 CREATE INDEX idx_message_created_at ON message(created_at);
+
+CREATE TABLE reaction
+(
+    id         bigserial PRIMARY KEY,
+    reaction   varchar(30)              NOT NULL,
+    message_id bigint                   NOT NULL,
+    user_id    bigint                   NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    created_by varchar(255)             NOT NULL,
+    updated_at timestamp with time zone NOT NULL,
+    updated_by varchar(255)             NOT NULL
+);
+CREATE INDEX idx_reaction_message_id ON reaction (message_id);

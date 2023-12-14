@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pydantic_settings import BaseSettings
 
 
@@ -10,6 +12,9 @@ class Settings(BaseSettings):
     secret_key: str
     attachment_bucket_name: str = "caas-attachments"
     gcp_key_file_path: str
+    print_sql_queries: bool = False
+    disable_docs: bool = True
+    sentry_dsn: Optional[bool] = None
 
 
 settings = Settings()

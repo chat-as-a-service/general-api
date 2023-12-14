@@ -1,5 +1,9 @@
+# flake8: noqa: F821
+from typing import List
+
 from sqlalchemy import Column, BigInteger, String, ForeignKey, Integer, text
 from sqlalchemy.dialects.postgresql import TIMESTAMP, UUID
+from sqlalchemy.orm import relationship, Mapped
 
 from .application import Application
 from ..database import Base
@@ -18,3 +22,7 @@ class Channel(Base):
     created_by = Column(String(255), nullable=False)
     updated_at = Column(TIMESTAMP(timezone=True), nullable=False)
     updated_by = Column(String(255), nullable=False)
+    application = relationship("Application", back_populates="channels")
+    users: Mapped[List["User"]] = relationship(
+        "User", secondary="channel_users", back_populates="channels"
+    )

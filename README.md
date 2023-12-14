@@ -29,3 +29,11 @@ The IDE is free for students by signing up for a [GitHub Student Developer Pack]
     - `services` - Business logic
     - `routers` - API endpoints
     - `core` - Common logic
+
+## Authentication
+
+- All endpoints except signup and sign in require authentication.
+- Requests can authenticate themselves in one of the two ways:
+  - API Key: Add `Api-Token` header with the application's API key
+  - Session Token: Add `Authorization` header with the session token returned by the sign in endpoint
+  - In case both methods are used, API key will be used for authentication

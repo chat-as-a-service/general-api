@@ -11,9 +11,13 @@ class AccountBase(BaseModel):
     organization_id: Optional[int] = None
 
 
-class AccountSignin(BaseModel):
+class AccountSigninReq(BaseModel):
     email: EmailStr
     password: str
+
+
+class AccountSigninRes(BaseModel):
+    token: str
 
 
 class AccountCreate(AccountBase):
@@ -22,6 +26,20 @@ class AccountCreate(AccountBase):
 
 class AccountCreateResponse(AccountBase):
     pass
+
+
+class AccountResponse(AccountBase):
+    pass
+
+
+class AccountPrincipal(BaseModel):
+    id: int
+    email: EmailStr
+    first_name: str
+    last_name: str
+    organization_id: Optional[int] = None
+    created_at: datetime
+    updated_at: datetime
 
 
 class Account(AccountBase):
