@@ -50,4 +50,6 @@ wheels/
 .installed.cfg
 *.egg
 
+*.local
+
 chat-as-a-service-*.json
